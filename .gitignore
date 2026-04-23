@@ -1,32 +1,40 @@
+# 编译产物和临时文件
 *.o
-.DS_Store
-.*.swp
-/env
-/dl
-/.config
-/.config.old
-/bin
-/build_dir
-/staging_dir
-/tmp
-/logs
-/feeds
-/feeds.conf
-/files
-/overlay
-/package/feeds
-/package/openwrt-packages
-/*.patch
-key-build*
-*.orig
-*.rej
+*.so
+*.a
 *~
 .#*
 *#
-.emacs.desktop*
-TAGS*~
-git-src
+*.rej
+*.orig
+.DS_Store
+.*.swp
+
+# 编译目录（体积巨大，每次编译都会重新生成）
+/dl/
+/build_dir/
+/staging_dir/
+/tmp/
+/logs/
+
+# feeds 相关（运行 ./scripts/feeds update 会重新生成）
+/feeds/
+/feeds.conf
+/package/feeds/
+
+# 密钥文件（敏感信息）
+key-build*
+key-build.pub
+
+# ccache 缓存
+.ccache/
+
+# IDE 配置（可选，如果你用 VSCode 可以保留 .vscode）
+.vscode/
 .project
 .cproject
-.ccache
-.vscode*
+
+# 注意：以下内容不忽略，会提交到仓库
+# /.config        ← 保留！你的编译配置
+# /files/         ← 如果有自定义文件，也保留
+# /package/xxx    ← 你手动添加的插件，保留
